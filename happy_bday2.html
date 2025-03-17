@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            background-color: #222;
+            text-align: center;
+            font-family: 'Impact', sans-serif;
+            color: #fff;
+            overflow: hidden;
+        }
+        .container {
+            margin-top: 100px;
+            padding: 20px;
+            display: none;
+        }
+        h1 {
+            font-size: 3.5rem;
+            color: #ffae00;
+            text-transform: uppercase;
+            animation: fadeIn 2s ease-in-out;
+        }
+        p {
+            font-size: 1.3rem;
+            color: #ccc;
+            font-weight: bold;
+            animation: fadeIn 3s ease-in-out;
+        }
+        .emoji {
+            font-size: 3rem;
+            animation: pulse 1s infinite alternate;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+        .gift-box {
+            width: 200px;
+            height: 200px;
+            background-color: #ffae00;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+            color: #222;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 100px auto;
+            transition: transform 0.3s ease-in-out, background 0.3s;
+            border: 5px solid #fff;
+        }
+        .gift-box:hover {
+            transform: scale(1.1);
+            background-color: #ff6000;
+        }
+        .open-text {
+            font-size: 1.5rem;
+            color: #ffae00;
+            font-weight: bold;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: gold;
+            position: fixed;
+            top: -10px;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="gift-box" id="gift">🎁</div>
+    <p class="open-text">💪 TAP TO UNLEASH 💪</p>
+    
+    <div class="container" id="message">
+        <h1>🔥 Happy Birthday Bro! 🍻</h1>
+        <p>Hey legend! Wishing you strength, health, and endless adventures ahead. Keep conquering life like the boss you are. Enjoy your day, and let’s celebrate soon! 🏆🎉</p>
+        <p class="emoji">💥🏋️‍♂️🚀</p>
+    </div>
+
+    <script>
+        document.getElementById("gift").addEventListener("click", function() {
+            this.style.display = "none";
+            document.querySelector(".open-text").style.display = "none";
+            document.getElementById("message").style.display = "block";
+            createConfetti();
+        });
+        
+        function createConfetti() {
+            for (let i = 0; i < 500; i++) {
+                let confetti = document.createElement("div");
+                confetti.classList.add("confetti");
+                confetti.style.left = Math.random() * window.innerWidth + "px";
+                confetti.style.backgroundColor = ["red", "blue", "yellow", "green", "orange"][Math.floor(Math.random() * 5)];
+                confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+    </script>
+</body>
+</html>
